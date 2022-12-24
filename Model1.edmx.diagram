@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4d26cbd7d1404545be3467ce9a5ff744" Name="Diagram1">
+        <EntityTypeShape EntityType="Oto_galeriModel.ArabaTable" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Oto_galeriModel.IslemTable" Width="1.5" PointX="7.5" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Oto_galeriModel.MSifreTable" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Oto_galeriModel.MusteriTable" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Oto_galeriModel.PersonelTable" Width="1.5" PointX="5.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Oto_galeriModel.PSifreTable" Width="1.5" PointX="7.5" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Oto_galeriModel.SubeTable" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Oto_galeriModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Oto_galeriModel.TipTable" Width="1.5" PointX="5.25" PointY="14" IsExpanded="true" />
+        <AssociationConnector Association="Oto_galeriModel.FK_IslemTable_ArabaTable" ManuallyRouted="false" />
+        <AssociationConnector Association="Oto_galeriModel.FK_IslemTable_MusteriTable" ManuallyRouted="false" />
+        <AssociationConnector Association="Oto_galeriModel.FK_IslemTable_PersonelTable" ManuallyRouted="false" />
+        <AssociationConnector Association="Oto_galeriModel.FK_IslemTable_TipTable" ManuallyRouted="false" />
+        <AssociationConnector Association="Oto_galeriModel.FK_MSifreTable_MusteriTable" ManuallyRouted="false" />
+        <AssociationConnector Association="Oto_galeriModel.FK_PersonelTable_SubeTable" ManuallyRouted="false" />
+        <AssociationConnector Association="Oto_galeriModel.FK_PSifreTable_PersonelTable" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Oto_galeriModel.IlTable" Width="1.5" PointX="0.75" PointY="7.875" />
+        <AssociationConnector Association="Oto_galeriModel.FK_MusteriTable_IlTable" />
+        <AssociationConnector Association="Oto_galeriModel.FK_SubeTable_IlTable" />
+        <AssociationConnector Association="Oto_galeriModel.FK_ArabaTable_SubeTable" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

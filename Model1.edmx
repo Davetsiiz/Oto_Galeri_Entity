@@ -1,0 +1,744 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Oto_galeriModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ArabaTable">
+          <Key>
+            <PropertyRef Name="A_ID" />
+          </Key>
+          <Property Name="A_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="A_No" Type="nvarchar" MaxLength="50" />
+          <Property Name="A_Marka" Type="nvarchar" MaxLength="50" />
+          <Property Name="A_Model" Type="nvarchar" MaxLength="50" />
+          <Property Name="A_Tip" Type="nvarchar" MaxLength="50" />
+          <Property Name="A_Renk" Type="nvarchar" MaxLength="50" />
+          <Property Name="A_Yakit" Type="nvarchar" MaxLength="50" />
+          <Property Name="A_Vites" Type="nvarchar" MaxLength="50" />
+          <Property Name="A_Yil" Type="nvarchar" MaxLength="50" />
+          <Property Name="A_Fiyat" Type="int" />
+          <Property Name="A_Tarih" Type="nvarchar" MaxLength="50" />
+          <Property Name="A_Plaka" Type="nvarchar" MaxLength="50" />
+          <Property Name="S_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="IlTable">
+          <Key>
+            <PropertyRef Name="I_ID" />
+          </Key>
+          <Property Name="I_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="I_AD" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="IslemTable">
+          <Key>
+            <PropertyRef Name="Is_ID" />
+          </Key>
+          <Property Name="Is_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Is_Fiyat" Type="int" />
+          <Property Name="Is_Tar" Type="nvarchar" MaxLength="50" />
+          <Property Name="M_ID" Type="int" />
+          <Property Name="A_ID" Type="int" />
+          <Property Name="T_ID" Type="int" />
+          <Property Name="P_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="MSifreTable">
+          <Key>
+            <PropertyRef Name="MS_ID" />
+          </Key>
+          <Property Name="MS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MS_S" Type="nvarchar" MaxLength="12" />
+          <Property Name="MS_Nick" Type="nvarchar" MaxLength="50" />
+          <Property Name="M_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="MusteriTable">
+          <Key>
+            <PropertyRef Name="M_ID" />
+          </Key>
+          <Property Name="M_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="M_TC" Type="nvarchar" MaxLength="20" />
+          <Property Name="M_AD" Type="nvarchar" MaxLength="50" />
+          <Property Name="M_Soyad" Type="nvarchar" MaxLength="50" />
+          <Property Name="M_Tel" Type="nvarchar" MaxLength="50" />
+          <Property Name="M_Cins" Type="nvarchar" MaxLength="50" />
+          <Property Name="M_Dyil" Type="nvarchar" MaxLength="20" />
+          <Property Name="M_Mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="M_Ehliyet" Type="nvarchar" MaxLength="10" />
+          <Property Name="I_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="PersonelTable">
+          <Key>
+            <PropertyRef Name="P_ID" />
+          </Key>
+          <Property Name="P_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="P_AD" Type="nvarchar" MaxLength="50" />
+          <Property Name="S_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="PSifreTable">
+          <Key>
+            <PropertyRef Name="PS_ID" />
+          </Key>
+          <Property Name="PS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PS_S" Type="nvarchar" MaxLength="12" />
+          <Property Name="PS_Nick" Type="nvarchar" MaxLength="50" />
+          <Property Name="P_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="SubeTable">
+          <Key>
+            <PropertyRef Name="S_ID" />
+          </Key>
+          <Property Name="S_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="S_AD" Type="nvarchar" MaxLength="50" />
+          <Property Name="I_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TipTable">
+          <Key>
+            <PropertyRef Name="T_ID" />
+          </Key>
+          <Property Name="T_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="T_Tip" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_ArabaTable_SubeTable">
+          <End Role="SubeTable" Type="Self.SubeTable" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ArabaTable" Type="Self.ArabaTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubeTable">
+              <PropertyRef Name="S_ID" />
+            </Principal>
+            <Dependent Role="ArabaTable">
+              <PropertyRef Name="S_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IslemTable_ArabaTable">
+          <End Role="ArabaTable" Type="Self.ArabaTable" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IslemTable" Type="Self.IslemTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArabaTable">
+              <PropertyRef Name="A_ID" />
+            </Principal>
+            <Dependent Role="IslemTable">
+              <PropertyRef Name="A_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IslemTable_MusteriTable">
+          <End Role="MusteriTable" Type="Self.MusteriTable" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IslemTable" Type="Self.IslemTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MusteriTable">
+              <PropertyRef Name="M_ID" />
+            </Principal>
+            <Dependent Role="IslemTable">
+              <PropertyRef Name="M_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IslemTable_PersonelTable">
+          <End Role="PersonelTable" Type="Self.PersonelTable" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IslemTable" Type="Self.IslemTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonelTable">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="IslemTable">
+              <PropertyRef Name="P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IslemTable_TipTable">
+          <End Role="TipTable" Type="Self.TipTable" Multiplicity="0..1" />
+          <End Role="IslemTable" Type="Self.IslemTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipTable">
+              <PropertyRef Name="T_ID" />
+            </Principal>
+            <Dependent Role="IslemTable">
+              <PropertyRef Name="T_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MSifreTable_MusteriTable">
+          <End Role="MusteriTable" Type="Self.MusteriTable" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="MSifreTable" Type="Self.MSifreTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MusteriTable">
+              <PropertyRef Name="M_ID" />
+            </Principal>
+            <Dependent Role="MSifreTable">
+              <PropertyRef Name="M_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MusteriTable_IlTable">
+          <End Role="IlTable" Type="Self.IlTable" Multiplicity="0..1" />
+          <End Role="MusteriTable" Type="Self.MusteriTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IlTable">
+              <PropertyRef Name="I_ID" />
+            </Principal>
+            <Dependent Role="MusteriTable">
+              <PropertyRef Name="I_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonelTable_SubeTable">
+          <End Role="SubeTable" Type="Self.SubeTable" Multiplicity="0..1" />
+          <End Role="PersonelTable" Type="Self.PersonelTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubeTable">
+              <PropertyRef Name="S_ID" />
+            </Principal>
+            <Dependent Role="PersonelTable">
+              <PropertyRef Name="S_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PSifreTable_PersonelTable">
+          <End Role="PersonelTable" Type="Self.PersonelTable" Multiplicity="0..1" />
+          <End Role="PSifreTable" Type="Self.PSifreTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonelTable">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="PSifreTable">
+              <PropertyRef Name="P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubeTable_IlTable">
+          <End Role="IlTable" Type="Self.IlTable" Multiplicity="0..1" />
+          <End Role="SubeTable" Type="Self.SubeTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IlTable">
+              <PropertyRef Name="I_ID" />
+            </Principal>
+            <Dependent Role="SubeTable">
+              <PropertyRef Name="I_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Oto_galeriModelStoreContainer">
+          <EntitySet Name="ArabaTable" EntityType="Self.ArabaTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IlTable" EntityType="Self.IlTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IslemTable" EntityType="Self.IslemTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MSifreTable" EntityType="Self.MSifreTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MusteriTable" EntityType="Self.MusteriTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonelTable" EntityType="Self.PersonelTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PSifreTable" EntityType="Self.PSifreTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubeTable" EntityType="Self.SubeTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipTable" EntityType="Self.TipTable" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ArabaTable_SubeTable" Association="Self.FK_ArabaTable_SubeTable">
+            <End Role="SubeTable" EntitySet="SubeTable" />
+            <End Role="ArabaTable" EntitySet="ArabaTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IslemTable_ArabaTable" Association="Self.FK_IslemTable_ArabaTable">
+            <End Role="ArabaTable" EntitySet="ArabaTable" />
+            <End Role="IslemTable" EntitySet="IslemTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IslemTable_MusteriTable" Association="Self.FK_IslemTable_MusteriTable">
+            <End Role="MusteriTable" EntitySet="MusteriTable" />
+            <End Role="IslemTable" EntitySet="IslemTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IslemTable_PersonelTable" Association="Self.FK_IslemTable_PersonelTable">
+            <End Role="PersonelTable" EntitySet="PersonelTable" />
+            <End Role="IslemTable" EntitySet="IslemTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IslemTable_TipTable" Association="Self.FK_IslemTable_TipTable">
+            <End Role="TipTable" EntitySet="TipTable" />
+            <End Role="IslemTable" EntitySet="IslemTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MSifreTable_MusteriTable" Association="Self.FK_MSifreTable_MusteriTable">
+            <End Role="MusteriTable" EntitySet="MusteriTable" />
+            <End Role="MSifreTable" EntitySet="MSifreTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MusteriTable_IlTable" Association="Self.FK_MusteriTable_IlTable">
+            <End Role="IlTable" EntitySet="IlTable" />
+            <End Role="MusteriTable" EntitySet="MusteriTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonelTable_SubeTable" Association="Self.FK_PersonelTable_SubeTable">
+            <End Role="SubeTable" EntitySet="SubeTable" />
+            <End Role="PersonelTable" EntitySet="PersonelTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PSifreTable_PersonelTable" Association="Self.FK_PSifreTable_PersonelTable">
+            <End Role="PersonelTable" EntitySet="PersonelTable" />
+            <End Role="PSifreTable" EntitySet="PSifreTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubeTable_IlTable" Association="Self.FK_SubeTable_IlTable">
+            <End Role="IlTable" EntitySet="IlTable" />
+            <End Role="SubeTable" EntitySet="SubeTable" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Oto_galeriModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ArabaTable">
+          <Key>
+            <PropertyRef Name="A_ID" />
+          </Key>
+          <Property Name="A_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="A_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="A_Marka" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="A_Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="A_Tip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="A_Renk" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="A_Yakit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="A_Vites" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="A_Yil" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="A_Fiyat" Type="Int32" />
+          <Property Name="A_Tarih" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="A_Plaka" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="IslemTable" Relationship="Self.FK_IslemTable_ArabaTable" FromRole="ArabaTable" ToRole="IslemTable" />
+          <Property Name="S_ID" Type="Int32" />
+          <NavigationProperty Name="SubeTable" Relationship="Oto_galeriModel.FK_ArabaTable_SubeTable" FromRole="ArabaTable" ToRole="SubeTable" />
+        </EntityType>
+        <EntityType Name="IslemTable">
+          <Key>
+            <PropertyRef Name="Is_ID" />
+          </Key>
+          <Property Name="Is_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Is_Fiyat" Type="Int32" />
+          <Property Name="Is_Tar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="M_ID" Type="Int32" />
+          <Property Name="A_ID" Type="Int32" />
+          <Property Name="T_ID" Type="Int32" />
+          <Property Name="P_ID" Type="Int32" />
+          <NavigationProperty Name="ArabaTable" Relationship="Self.FK_IslemTable_ArabaTable" FromRole="IslemTable" ToRole="ArabaTable" />
+          <NavigationProperty Name="MusteriTable" Relationship="Self.FK_IslemTable_MusteriTable" FromRole="IslemTable" ToRole="MusteriTable" />
+          <NavigationProperty Name="PersonelTable" Relationship="Self.FK_IslemTable_PersonelTable" FromRole="IslemTable" ToRole="PersonelTable" />
+          <NavigationProperty Name="TipTable" Relationship="Self.FK_IslemTable_TipTable" FromRole="IslemTable" ToRole="TipTable" />
+        </EntityType>
+        <EntityType Name="MSifreTable">
+          <Key>
+            <PropertyRef Name="MS_ID" />
+          </Key>
+          <Property Name="MS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MS_S" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="MS_Nick" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="M_ID" Type="Int32" />
+          <NavigationProperty Name="MusteriTable" Relationship="Self.FK_MSifreTable_MusteriTable" FromRole="MSifreTable" ToRole="MusteriTable" />
+        </EntityType>
+        <EntityType Name="MusteriTable">
+          <Key>
+            <PropertyRef Name="M_ID" />
+          </Key>
+          <Property Name="M_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="M_TC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="M_AD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="M_Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="M_Tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="M_Cins" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="M_Dyil" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="M_Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="M_Ehliyet" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="I_ID" Type="Int32" />
+          <NavigationProperty Name="IslemTable" Relationship="Self.FK_IslemTable_MusteriTable" FromRole="MusteriTable" ToRole="IslemTable" />
+          <NavigationProperty Name="MSifreTable" Relationship="Self.FK_MSifreTable_MusteriTable" FromRole="MusteriTable" ToRole="MSifreTable" />
+          <NavigationProperty Name="IlTable" Relationship="Oto_galeriModel.FK_MusteriTable_IlTable" FromRole="MusteriTable" ToRole="IlTable" />
+        </EntityType>
+        <EntityType Name="PersonelTable">
+          <Key>
+            <PropertyRef Name="P_ID" />
+          </Key>
+          <Property Name="P_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="P_AD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="S_ID" Type="Int32" />
+          <NavigationProperty Name="IslemTable" Relationship="Self.FK_IslemTable_PersonelTable" FromRole="PersonelTable" ToRole="IslemTable" />
+          <NavigationProperty Name="SubeTable" Relationship="Self.FK_PersonelTable_SubeTable" FromRole="PersonelTable" ToRole="SubeTable" />
+          <NavigationProperty Name="PSifreTable" Relationship="Self.FK_PSifreTable_PersonelTable" FromRole="PersonelTable" ToRole="PSifreTable" />
+        </EntityType>
+        <EntityType Name="PSifreTable">
+          <Key>
+            <PropertyRef Name="PS_ID" />
+          </Key>
+          <Property Name="PS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PS_S" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="PS_Nick" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="P_ID" Type="Int32" />
+          <NavigationProperty Name="PersonelTable" Relationship="Self.FK_PSifreTable_PersonelTable" FromRole="PSifreTable" ToRole="PersonelTable" />
+        </EntityType>
+        <EntityType Name="SubeTable">
+          <Key>
+            <PropertyRef Name="S_ID" />
+          </Key>
+          <Property Name="S_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="S_AD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="I_ID" Type="Int32" />
+          <NavigationProperty Name="PersonelTable" Relationship="Self.FK_PersonelTable_SubeTable" FromRole="SubeTable" ToRole="PersonelTable" />
+          <NavigationProperty Name="IlTable" Relationship="Oto_galeriModel.FK_SubeTable_IlTable" FromRole="SubeTable" ToRole="IlTable" />
+          <NavigationProperty Name="ArabaTable" Relationship="Oto_galeriModel.FK_ArabaTable_SubeTable" FromRole="SubeTable" ToRole="ArabaTable" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TipTable">
+          <Key>
+            <PropertyRef Name="T_ID" />
+          </Key>
+          <Property Name="T_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="T_Tip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="IslemTable" Relationship="Self.FK_IslemTable_TipTable" FromRole="TipTable" ToRole="IslemTable" />
+        </EntityType>
+        <Association Name="FK_IslemTable_ArabaTable">
+          <End Role="ArabaTable" Type="Self.ArabaTable" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IslemTable" Type="Self.IslemTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArabaTable">
+              <PropertyRef Name="A_ID" />
+            </Principal>
+            <Dependent Role="IslemTable">
+              <PropertyRef Name="A_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IslemTable_MusteriTable">
+          <End Role="MusteriTable" Type="Self.MusteriTable" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IslemTable" Type="Self.IslemTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MusteriTable">
+              <PropertyRef Name="M_ID" />
+            </Principal>
+            <Dependent Role="IslemTable">
+              <PropertyRef Name="M_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IslemTable_PersonelTable">
+          <End Role="PersonelTable" Type="Self.PersonelTable" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IslemTable" Type="Self.IslemTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonelTable">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="IslemTable">
+              <PropertyRef Name="P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IslemTable_TipTable">
+          <End Role="TipTable" Type="Self.TipTable" Multiplicity="0..1" />
+          <End Role="IslemTable" Type="Self.IslemTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipTable">
+              <PropertyRef Name="T_ID" />
+            </Principal>
+            <Dependent Role="IslemTable">
+              <PropertyRef Name="T_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MSifreTable_MusteriTable">
+          <End Role="MusteriTable" Type="Self.MusteriTable" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="MSifreTable" Type="Self.MSifreTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MusteriTable">
+              <PropertyRef Name="M_ID" />
+            </Principal>
+            <Dependent Role="MSifreTable">
+              <PropertyRef Name="M_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonelTable_SubeTable">
+          <End Role="SubeTable" Type="Self.SubeTable" Multiplicity="0..1" />
+          <End Role="PersonelTable" Type="Self.PersonelTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubeTable">
+              <PropertyRef Name="S_ID" />
+            </Principal>
+            <Dependent Role="PersonelTable">
+              <PropertyRef Name="S_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PSifreTable_PersonelTable">
+          <End Role="PersonelTable" Type="Self.PersonelTable" Multiplicity="0..1" />
+          <End Role="PSifreTable" Type="Self.PSifreTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonelTable">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="PSifreTable">
+              <PropertyRef Name="P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Oto_galeriEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ArabaTable" EntityType="Self.ArabaTable" />
+          <EntitySet Name="IslemTable" EntityType="Self.IslemTable" />
+          <EntitySet Name="MSifreTable" EntityType="Self.MSifreTable" />
+          <EntitySet Name="MusteriTable" EntityType="Self.MusteriTable" />
+          <EntitySet Name="PersonelTable" EntityType="Self.PersonelTable" />
+          <EntitySet Name="PSifreTable" EntityType="Self.PSifreTable" />
+          <EntitySet Name="SubeTable" EntityType="Self.SubeTable" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TipTable" EntityType="Self.TipTable" />
+          <AssociationSet Name="FK_IslemTable_ArabaTable" Association="Self.FK_IslemTable_ArabaTable">
+            <End Role="ArabaTable" EntitySet="ArabaTable" />
+            <End Role="IslemTable" EntitySet="IslemTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IslemTable_MusteriTable" Association="Self.FK_IslemTable_MusteriTable">
+            <End Role="MusteriTable" EntitySet="MusteriTable" />
+            <End Role="IslemTable" EntitySet="IslemTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IslemTable_PersonelTable" Association="Self.FK_IslemTable_PersonelTable">
+            <End Role="PersonelTable" EntitySet="PersonelTable" />
+            <End Role="IslemTable" EntitySet="IslemTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IslemTable_TipTable" Association="Self.FK_IslemTable_TipTable">
+            <End Role="TipTable" EntitySet="TipTable" />
+            <End Role="IslemTable" EntitySet="IslemTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MSifreTable_MusteriTable" Association="Self.FK_MSifreTable_MusteriTable">
+            <End Role="MusteriTable" EntitySet="MusteriTable" />
+            <End Role="MSifreTable" EntitySet="MSifreTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonelTable_SubeTable" Association="Self.FK_PersonelTable_SubeTable">
+            <End Role="SubeTable" EntitySet="SubeTable" />
+            <End Role="PersonelTable" EntitySet="PersonelTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PSifreTable_PersonelTable" Association="Self.FK_PSifreTable_PersonelTable">
+            <End Role="PersonelTable" EntitySet="PersonelTable" />
+            <End Role="PSifreTable" EntitySet="PSifreTable" />
+          </AssociationSet>
+          <EntitySet Name="IlTable" EntityType="Oto_galeriModel.IlTable" />
+          <AssociationSet Name="FK_MusteriTable_IlTable" Association="Oto_galeriModel.FK_MusteriTable_IlTable">
+            <End Role="IlTable" EntitySet="IlTable" />
+            <End Role="MusteriTable" EntitySet="MusteriTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubeTable_IlTable" Association="Oto_galeriModel.FK_SubeTable_IlTable">
+            <End Role="IlTable" EntitySet="IlTable" />
+            <End Role="SubeTable" EntitySet="SubeTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArabaTable_SubeTable" Association="Oto_galeriModel.FK_ArabaTable_SubeTable">
+            <End Role="SubeTable" EntitySet="SubeTable" />
+            <End Role="ArabaTable" EntitySet="ArabaTable" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="IlTable">
+          <Key>
+            <PropertyRef Name="I_ID" />
+          </Key>
+          <Property Name="I_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="I_AD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MusteriTable" Relationship="Oto_galeriModel.FK_MusteriTable_IlTable" FromRole="IlTable" ToRole="MusteriTable" />
+          <NavigationProperty Name="SubeTable" Relationship="Oto_galeriModel.FK_SubeTable_IlTable" FromRole="IlTable" ToRole="SubeTable" />
+        </EntityType>
+        <Association Name="FK_MusteriTable_IlTable">
+          <End Type="Oto_galeriModel.IlTable" Role="IlTable" Multiplicity="0..1" />
+          <End Type="Oto_galeriModel.MusteriTable" Role="MusteriTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IlTable">
+              <PropertyRef Name="I_ID" />
+            </Principal>
+            <Dependent Role="MusteriTable">
+              <PropertyRef Name="I_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubeTable_IlTable">
+          <End Type="Oto_galeriModel.IlTable" Role="IlTable" Multiplicity="0..1" />
+          <End Type="Oto_galeriModel.SubeTable" Role="SubeTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IlTable">
+              <PropertyRef Name="I_ID" />
+            </Principal>
+            <Dependent Role="SubeTable">
+              <PropertyRef Name="I_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArabaTable_SubeTable">
+          <End Type="Oto_galeriModel.SubeTable" Role="SubeTable" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Oto_galeriModel.ArabaTable" Role="ArabaTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubeTable">
+              <PropertyRef Name="S_ID" />
+            </Principal>
+            <Dependent Role="ArabaTable">
+              <PropertyRef Name="S_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Oto_galeriModelStoreContainer" CdmEntityContainer="Oto_galeriEntities1">
+          <EntitySetMapping Name="ArabaTable">
+            <EntityTypeMapping TypeName="Oto_galeriModel.ArabaTable">
+              <MappingFragment StoreEntitySet="ArabaTable">
+                <ScalarProperty Name="S_ID" ColumnName="S_ID" />
+                <ScalarProperty Name="A_ID" ColumnName="A_ID" />
+                <ScalarProperty Name="A_No" ColumnName="A_No" />
+                <ScalarProperty Name="A_Marka" ColumnName="A_Marka" />
+                <ScalarProperty Name="A_Model" ColumnName="A_Model" />
+                <ScalarProperty Name="A_Tip" ColumnName="A_Tip" />
+                <ScalarProperty Name="A_Renk" ColumnName="A_Renk" />
+                <ScalarProperty Name="A_Yakit" ColumnName="A_Yakit" />
+                <ScalarProperty Name="A_Vites" ColumnName="A_Vites" />
+                <ScalarProperty Name="A_Yil" ColumnName="A_Yil" />
+                <ScalarProperty Name="A_Fiyat" ColumnName="A_Fiyat" />
+                <ScalarProperty Name="A_Tarih" ColumnName="A_Tarih" />
+                <ScalarProperty Name="A_Plaka" ColumnName="A_Plaka" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IslemTable">
+            <EntityTypeMapping TypeName="Oto_galeriModel.IslemTable">
+              <MappingFragment StoreEntitySet="IslemTable">
+                <ScalarProperty Name="Is_ID" ColumnName="Is_ID" />
+                <ScalarProperty Name="Is_Fiyat" ColumnName="Is_Fiyat" />
+                <ScalarProperty Name="Is_Tar" ColumnName="Is_Tar" />
+                <ScalarProperty Name="M_ID" ColumnName="M_ID" />
+                <ScalarProperty Name="A_ID" ColumnName="A_ID" />
+                <ScalarProperty Name="T_ID" ColumnName="T_ID" />
+                <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MSifreTable">
+            <EntityTypeMapping TypeName="Oto_galeriModel.MSifreTable">
+              <MappingFragment StoreEntitySet="MSifreTable">
+                <ScalarProperty Name="MS_ID" ColumnName="MS_ID" />
+                <ScalarProperty Name="MS_S" ColumnName="MS_S" />
+                <ScalarProperty Name="MS_Nick" ColumnName="MS_Nick" />
+                <ScalarProperty Name="M_ID" ColumnName="M_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MusteriTable">
+            <EntityTypeMapping TypeName="Oto_galeriModel.MusteriTable">
+              <MappingFragment StoreEntitySet="MusteriTable">
+                <ScalarProperty Name="M_ID" ColumnName="M_ID" />
+                <ScalarProperty Name="M_TC" ColumnName="M_TC" />
+                <ScalarProperty Name="M_AD" ColumnName="M_AD" />
+                <ScalarProperty Name="M_Soyad" ColumnName="M_Soyad" />
+                <ScalarProperty Name="M_Tel" ColumnName="M_Tel" />
+                <ScalarProperty Name="M_Cins" ColumnName="M_Cins" />
+                <ScalarProperty Name="M_Dyil" ColumnName="M_Dyil" />
+                <ScalarProperty Name="M_Mail" ColumnName="M_Mail" />
+                <ScalarProperty Name="M_Ehliyet" ColumnName="M_Ehliyet" />
+                <ScalarProperty Name="I_ID" ColumnName="I_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonelTable">
+            <EntityTypeMapping TypeName="Oto_galeriModel.PersonelTable">
+              <MappingFragment StoreEntitySet="PersonelTable">
+                <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+                <ScalarProperty Name="P_AD" ColumnName="P_AD" />
+                <ScalarProperty Name="S_ID" ColumnName="S_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PSifreTable">
+            <EntityTypeMapping TypeName="Oto_galeriModel.PSifreTable">
+              <MappingFragment StoreEntitySet="PSifreTable">
+                <ScalarProperty Name="PS_ID" ColumnName="PS_ID" />
+                <ScalarProperty Name="PS_S" ColumnName="PS_S" />
+                <ScalarProperty Name="PS_Nick" ColumnName="PS_Nick" />
+                <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubeTable">
+            <EntityTypeMapping TypeName="Oto_galeriModel.SubeTable">
+              <MappingFragment StoreEntitySet="SubeTable">
+                <ScalarProperty Name="S_ID" ColumnName="S_ID" />
+                <ScalarProperty Name="S_AD" ColumnName="S_AD" />
+                <ScalarProperty Name="I_ID" ColumnName="I_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Oto_galeriModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipTable">
+            <EntityTypeMapping TypeName="Oto_galeriModel.TipTable">
+              <MappingFragment StoreEntitySet="TipTable">
+                <ScalarProperty Name="T_ID" ColumnName="T_ID" />
+                <ScalarProperty Name="T_Tip" ColumnName="T_Tip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IlTable">
+            <EntityTypeMapping TypeName="Oto_galeriModel.IlTable">
+              <MappingFragment StoreEntitySet="IlTable">
+                <ScalarProperty Name="I_AD" ColumnName="I_AD" />
+                <ScalarProperty Name="I_ID" ColumnName="I_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
